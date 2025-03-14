@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital clock</title>
+    <style>
+        @font-face {
+            font-family: gilroy;
+            src: url(Gilroy-Regular.ttf);
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: gilroy;
+        }
+        html, body {
+            height: 100%;
+            width: 100%;
+        }
+        *::selection {
+            background-color: #270F1C;
+            color: #E8766E;
+        }
+        body {
+            background-color: #000;
+            color: #fff;
+        }
+        #container {
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url(lake.jpg);
+            background-position: center;
+            background-size: cover;
+        }
+        #clock {
+            height: 25vw;
+            width: 50vw;
+            border: 0.3px solid rgb(160, 160, 160);
+            border-radius: 10px;
+            background-color: #ffffff3b;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            font-size: 12vw;
+        }
+        #forMobileClock {
+            justify-content: center;
+            align-items: center;
+            display: none;
+            border: 0.3px solid rgb(160, 160, 160);
+            background-color: #ffffff3b;
+            font-size: 30vw;
+            border-radius: 10px;
+            padding: 0 5px;
+        }
+
+        @media (max-width: 680px) {
+            #clock {
+                display: none;
+            }
+            #forMobileClock {
+                display: flex;
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="container">
+        <div id="clock">
+            <div class="hr"></div>:
+            <div class="min"></div>:
+            <div class="sec"></div>
+        </div>
+        <div id="forMobileClock">
+            <div class="hr"></div>
+            <div class="min"></div>
+            <div class="sec"></div>
+        </div>
+    </div>
+
+    <script>
+        function timeFunc() {
+            const time = new Date();
+            document.querySelectorAll(".hr").forEach(el => el.innerHTML = time.getHours());
+            document.querySelectorAll(".min").forEach(el => el.innerHTML = time.getMinutes());
+            document.querySelectorAll(".sec").forEach(el => el.innerHTML = time.getSeconds());
+        }
+        timeFunc()
+        setInterval(timeFunc, 1000)
+    </script>
+</body>
+</html>
